@@ -3,7 +3,7 @@ module.exports = {
   host: '127.0.0.1',
   username: 'docker',
   password: 'docker',
-  database: 'gonodemodulo2',
+  database: 'gonode_modulo2',
   operatorAliases: false,
   define: {
     timestamp: true,
