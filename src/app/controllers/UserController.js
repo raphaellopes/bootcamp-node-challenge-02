@@ -6,11 +6,18 @@ class UserController {
   }
 
   async store (req, res) {
-    const { body, file: { filename: avatar } } = req;
+    try {
+      const { body, file: { filename: avatar } } = req;
 
-    await User.create({ ...body, avatar });
+      await User.create({ ...body, avatar });
 
-    return res.redirect('/');
+      return res.redirect('/');
+    } catch (e) {
+      // @TODO: improve error messages
+      console.error({ e });
+      req.flash('error', 'Ocorreu um erro :p');
+      return res.redirect('/signup');
+    }
   }
 }
 
