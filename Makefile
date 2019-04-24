@@ -13,6 +13,9 @@ help: ## This help
 	- @awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 # Docker tasks
+start: ## Starts a stopped container
+	- docker container start $(containerName)
+
 run: ## Run container on port configured on `.env` file
 	- docker run \
 		--name $(containerName) \
