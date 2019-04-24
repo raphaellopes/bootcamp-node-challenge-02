@@ -12,7 +12,7 @@ const routes = require('./routes');
 class App {
   constructor () {
     this.express = express();
-    this.isDev = process.env.NODE_ENV;
+    this.isDev = process.env.NODE_ENV || true;
     this.middlewares();
     this.views();
     this.routes();
