@@ -5,6 +5,7 @@ const FileStore = require('session-file-store')(session);
 const nunjucks = require('nunjucks');
 const path = require('path');
 const flash = require('connect-flash');
+const moment = require('moment');
 
 // local
 const routes = require('./routes');
@@ -36,11 +37,13 @@ class App {
   }
 
   views () {
-    nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
+    const env = nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
       watch: this.isDev,
       express: this.express,
       autoscape: true
     });
+
+    env.addFilter('date', (d, formart) => moment(d).format(formart));
 
     this.express.use(express.static(path.resolve(__dirname, 'public')));
     this.express.set('view engine', 'njk');

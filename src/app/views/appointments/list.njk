@@ -17,11 +17,11 @@
   </form>
 
   <ul class="providers">
-    {% for item in data %}
+    {% for item in appointments %}
       <li class="provider">
-        <img src="/files/{{ item.customer.avatar }}" />
-        <strong>{{ item.customer.name }}</strong><br />
-        <strong>{{ item.date }}</strong>
+        <img src="/files/{{ item.user.avatar }}" />
+        <strong>{{ item.user.name }}</strong><br />
+        <strong>{{ item.date | date("HH:mm") }}</strong>
       </li>
     {% endfor %}
   </ul>

@@ -1,5 +1,3 @@
- # import .env
-# You can change the default config with `make env="custom.env" build`
 project = kartoza/postgis
 containerName = database.omnistack
 imageName = $(project)
