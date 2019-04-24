@@ -34,6 +34,7 @@ routes.get('/app/dashboard', DashboardController.index);
 
 routes.get('/app/appointments/new/:provider', AppointmentController.create);
 routes.post('/app/appointments/new/:provider', AppointmentController.store);
+routes.get('/app/appointments/:provider', AppointmentController.list);
 routes.get('/app/available/:provider', AvailableController.index);
 
 module.exports = routes;

@@ -1,0 +1,42 @@
+{% extends "_layouts/default.njk" %}
+
+{% block body %}
+<div class="content">
+  <strong>Confira seus agendamentos</strong>
+
+  <p>{{ dateFormatted }}</p>
+
+  <form id="filter" action="/app/appointments/{{ user.id }}" method="get">
+    <input
+      type="text"
+      class="flatpickr"
+      placeholder="Escolha uma data"
+      name="date"
+    />
+    </button>
+  </form>
+
+  <ul class="providers">
+    {% for item in data %}
+      <li class="provider">
+        <img src="/files/{{ item.customer.avatar }}" />
+        <strong>{{ item.customer.name }}</strong><br />
+        <strong>{{ item.date }}</strong>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script type="text/javascript">
+  var $ipt = document.getElementsByClassName('flatpickr');
+  var today = new Date();
+  flatpickr($ipt, {
+    minDate: today,
+    dateFormat: 'd/m/Y',
+    onChange: function(date, dateStr, instance) {
+      instance.input.value = date[0].getTime();
+      document.getElementById('filter').submit();
+    }
+  });
+</script>
+{% endblock %}

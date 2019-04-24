@@ -3,5 +3,7 @@ module.exports = ({ session }, res, next) => {
     return next();
   }
 
-  return res.redirect('/app/dashboard');
+  const { user } = session;
+  const view = user.provider ? `appointments/${user.id}` : 'dashboard';
+  return res.redirect(`/app/${view}`);
 };
