@@ -18,6 +18,12 @@
     {% endfor %}
   </ul>
 
+  {% if user.provider %}
+    <a href="/app/appointments/{{ user.id }}" class="link">
+      Ver agendamentos
+    </a>
+  {% endif %}
+
   <a href="/app/logout" class="logout">
     Sair
   </a>

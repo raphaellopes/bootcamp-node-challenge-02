@@ -9,7 +9,6 @@ class SessionController {
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
-    const view = user.provider ? `appointments/${user.id}` : 'dashboard';
 
     if (!user) {
       req.flash('error', 'Usuário não encontrado');
@@ -23,7 +22,7 @@ class SessionController {
 
     req.session.user = user;
 
-    return res.redirect(`/app/${view}`);
+    return res.redirect('/app/dashboard');
   }
 
   destroy (req, res) {
